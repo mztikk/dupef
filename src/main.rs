@@ -17,17 +17,13 @@ struct Args {
 fn main() -> io::Result<()> {
     let args = Args::parse();
 
-    // println!("{:?}", args.input);
-
     let mut dupes: HashMap<u32, Vec<PathBuf>> = HashMap::new();
-
-    // PathWalker::new(args.input).for_each(|x| println!("{:?}", x.path()));
 
     for entry in PathWalker::new(args.input)
         .map(|x| x.path())
         .filter(|x| x.is_file())
     {
-        let file_content = fs::read(&entry).unwrap();
+        let file_content = fs::read(&entry)?;
         let hash = xx_hash::xx_hash32(&file_content);
 
         match dupes.entry(hash) {
