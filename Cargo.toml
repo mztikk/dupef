@@ -12,4 +12,4 @@ strip = true
 [dependencies]
 xx-hash = "0.1.0"
 clap = { version = "3.1.8", features = ["derive"] }
-pathwalker = "0.1.0"
+pathwalker = { version = "0.1.2" }
